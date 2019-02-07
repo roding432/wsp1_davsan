@@ -9,7 +9,6 @@ http://porkforge.mardby.se/index.php?title=PHP_Laboration_2_-_Projektstart,_requ
 require ('resources/includes/view.php');
 require ('resources/includes/model.php');
 
-$error = '';
 
 // Set header correct without using HTML
 header("Content-type: text/html; charset=utf-8");
@@ -17,9 +16,11 @@ header("Content-type: text/html; charset=utf-8");
 // Get value from url for key page
 $page = filter_input(INPUT_GET,'page', FILTER_SANITIZE_URL);
 $error=" ";
+
+
 if(empty($page)) {
 	$header = 'Start';
-	$content = 'Välkommen till Labb 2! Här övar vi på PHP för att bli duktiga webbserverprogrammerare. Detta är andra labben men första labben i en serie labbar som tillsammans bygger vidare på detta projekt som vi påbörjar här. Ett enkelt PHP-projekt men väl strukturerat och genomtänkt konstruerat.';
+	$content = 'Välkommen till Labb PDO! Här övar vi på PHP för att bli duktiga webbserverprogrammerare. Detta är andra labben men första labben i en serie labbar som tillsammans bygger vidare på detta projekt som vi påbörjar här. Ett enkelt PHP-projekt men väl strukturerat och genomtänkt konstruerat.';
 	include ('resources/templates/page-template.php');
 }
 elseif($page == "blogg") {
@@ -27,14 +28,7 @@ elseif($page == "blogg") {
  $template = 'all-blog-posts';
 $post = filter_input(INPUT_GET,'post', FILTER_SANITIZE_URL);
 
-// if (empty($post)) {
-// 	foreach ($model as $key => $value) {
-// 		if ($post == $value ['slug'] ) {
-// 			$template = 'singel-blog-post';
-// 			$titel=$value['title'];
-// 			$auther = $value['auther'];
-// 			$date = $value['date'];
-// 			$message = $value['message'];
+
 
 		if(array_key_exists($post, $model)){
 			$template = 'single-blog-post';
